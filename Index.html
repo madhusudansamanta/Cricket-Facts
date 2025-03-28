@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Facts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .fact-box {
+            border: 2px solid #007bff;
+            padding: 20px;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+            background-color: #fff;
+            transition: opacity 0.5s ease;
+            opacity: 1;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Random Cricket Facts</h1>
+    <div id="factDisplay" class="fact-box">Click the button to see a cricket fact!</div>
+    <button id="factButton">Show Random Fact</button>
+    <button id="shareButton">Share on Twitter</button>
+
+    <script>
+        const cricketFacts = [
+            "Cricket originated in England in the 16th century.",
+            "The first international cricket match was played between the USA and Canada in 1844.",
+            "The longest format of the game is Test cricket, which can last up to five days.",
+            "The Cricket World Cup is held every four years, with the first tournament taking place in 1975.",
+            "Sachin Tendulkar holds the record for the most runs in international cricket.",
+            "The fastest century in One Day Internationals (ODIs) was scored by AB de Villiers in just 31 balls.",
+            "The Ashes is a Test cricket series played between England and Australia.",
+            "Cricket is governed by the International Cricket Council (ICC)."
+        ];
+
+        const factDisplay = document.getElementById('factDisplay');
+        const factButton = document.getElementById('factButton');
+        const shareButton = document.getElementById('shareButton');
+
+        factButton.addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * cricketFacts.length);
+            const randomFact = cricketFacts[randomIndex];
+            
+            // Fade out effect
+            factDisplay.style.opacity = 0;
+            setTimeout(() => {
+                factDisplay.textContent = randomFact;
+                factDisplay.style.opacity = 1; // Fade in effect
+            }, 500);
+        });
+
+        shareButton.addEventListener('click', () => {
+            const currentFact = factDisplay.textContent;
+            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(currentFact)}`;
+            window.open(twitterUrl, '_blank');
+        });
+    </script>
+</body>
+</html>
